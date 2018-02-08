@@ -10,6 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Activity {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
