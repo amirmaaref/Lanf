@@ -23,15 +23,25 @@ public class Activity {
     @ColumnInfo(name = "avtivity_datetime")
     private String date_time;
 
-    @ColumnInfo(name = "avtivity_patientid")
-    private String pId;
+    @ColumnInfo(name = "activity_pi")
+    private String pi;
 
-    public Activity(int id, String type, String min, String date_time, String pId) {
+
+    public String getPi() {
+        return pi;
+    }
+
+    public void setPi(String pi) {
+        this.pi = pi;
+    }
+
+    public Activity(int id, String type, String min, String date_time, String pi) {
         this.id = id;
         this.type = type;
         this.min = min;
         this.date_time = date_time;
-        this.pId = pId;
+        this.pi=pi;
+
     }
 
     public int getId() {
@@ -66,11 +76,4 @@ public class Activity {
         this.date_time = date_time;
     }
 
-    public String getpId() {
-        return pId;
-    }
-
-    public void setpId(String pId) {
-        this.pId = pId;
-    }
 }
