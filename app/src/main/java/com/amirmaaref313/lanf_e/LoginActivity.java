@@ -364,7 +364,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String result = new FlickrFetchr().getUrlString("https://www.google.com");
+                String result = new FlickrFetchr().getUrlString("https://jsonplaceholder.typicode.com/posts/1");
                 Log.i(TAG , "Success "+result);
             }catch (IOException ioe){
                 Log.e(TAG,"Failed :  " ,ioe);
