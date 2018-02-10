@@ -3,6 +3,8 @@ package com.amirmaaref313.lanf_e;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -34,6 +36,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Room.App;
+import Room.AppDatabase;
+import Room.SportActivity;
 import ServerConnection.FlickrFetchr;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -43,6 +48,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    private AppDatabase aa;
+    private App app;
+    List<SportActivity> getList;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -79,7 +87,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
         //Imported
-        new FetchItemsTask().execute();
+        //new FetchItemsTask().execute();
+
+        //DataBase Test Log
+        dadada();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -97,6 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                vv();
                 attemptLogin();
             }
         });
@@ -359,18 +371,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
         }
     }
-    private class FetchItemsTask extends AsyncTask<Void,Void,Void>{
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try{
-                String result = new FlickrFetchr().getUrlString("https://jsonplaceholder.typicode.com/posts/1");
-                Log.i(TAG , "Success "+result);
-            }catch (IOException ioe){
-                Log.e(TAG,"Failed :  " ,ioe);
-            }
-            return null;
+    private void dadada(){
+
+
+        //  aa = Room.databaseBuilder(this,AppDatabase.class,"a").allowMainThreadQueries().build();
+
+        try {
+          app = new App(this);
+          aa= app.getAppDatabase();
+           Log.w("Amirhosein !!!!","Realllyyyy Successs!!!!");
+        }catch (Exception e){
+            Log.e("Insert Test","Failed!!!!!      Amir!!!"+e);
         }
+    }
+    public void vv(){
+        final SportActivity sa = new SportActivity("BYYYYYYYY","as","as","as");
+        aa = app.getAppDatabase();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getList = aa.activityDao().getAllActivities();
+                Log.w("AAAAAAAAAAAAA",getList.get(getList.size()-1).getType());
+            }
+        }).start();
+
     }
 }
 

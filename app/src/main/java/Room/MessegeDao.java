@@ -14,7 +14,7 @@ import java.util.List;
 @Dao
 public interface MessegeDao {
     @Query("SELECT * FROM Messege")
-    List<Activity> getAllMesseges();
+    List<Messege> getAllMesseges();
 
     @Insert
     void insertOne(Messege messege);
