@@ -13,4 +13,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="patient_condition">Patient Condition</string>
+    <string name="exersices">Exersices</string>
+    <string name="messeges">Messeging</string>
+    <string name="in_spring_stories">In Spring Stories</string>
 </resources>

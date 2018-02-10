@@ -3,8 +3,7 @@ package com.amirmaaref313.lanf_e;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -32,14 +31,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.IOException;
+import com.amirmaaref313.lanf_e.PatientActivity.PatientActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import Room.App;
 import Room.AppDatabase;
 import Room.SportActivity;
-import ServerConnection.FlickrFetchr;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -385,17 +384,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.e("Insert Test","Failed!!!!!      Amir!!!"+e);
         }
     }
-    public void vv(){
-        final SportActivity sa = new SportActivity("BYYYYYYYY","as","as","as");
-        aa = app.getAppDatabase();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getList = aa.activityDao().getAllActivities();
-                Log.w("AAAAAAAAAAAAA",getList.get(getList.size()-1).getType());
-            }
-        }).start();
 
+    public void vv(){
+        startActivity(new Intent(this , PatientActivity.class));
     }
 }
 
